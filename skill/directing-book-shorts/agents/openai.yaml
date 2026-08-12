@@ -1,0 +1,13 @@
+interface:
+  display_name: Book Shorts Director
+  short_description: Build literary shorts with timed SRT, TTS pauses, and original editorial illustration
+  default_prompt: Use $directing-book-shorts to turn this book into a Chinese 9:16 literary short. Default to 60 seconds, but support 30s, 90s, 120s, or a custom duration. Use fixed 10-second video-generation containers, SRT-driven Jianying/CapCut TTS, book-specific editorial illustration art direction, and production-ready visual prompts.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
