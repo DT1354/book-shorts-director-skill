@@ -1,11 +1,26 @@
-# The Little Prince, 60-second example
+# 《小王子》60 秒完整案例
 
-Central question: why does one rose become irreplaceable when there are so many roses?
+主题：**世界上有那么多玫瑰，为什么只有一朵，让小王子一直放不下？**
 
-Format: 9:16, 60 seconds, 6 fixed 10-second visual generations, 18 SRT/TTS blocks.
+## 规格
 
-Art direction: deep cobalt field, ivory structure, warm star gold, rose red. Recurring motifs include the tiny planet, rose, fox, wheat, glass dome, and stars.
+- 9:16
+- 60 秒
+- 6 个固定 10 秒视频容器
+- 18 个 SRT/TTS 字幕块
+- 剪映批量文本朗读
+- 文学编辑插画动画
 
-The narration moves from the question, to the Little Prince leaving his rose, to meeting the fox, to the gradual creation of a relationship, and finally back to the rose with a new understanding.
+## 视觉体系
 
-See `subtitles.srt` for the exact Jianying/CapCut timing and `prompts.md` for the six visual production beats.
+主背景是深钴蓝。暖星金用于星星、狐狸和麦田，玫瑰红用于情感焦点，象牙白负责人物与基础结构。
+
+贯穿意象包括小星球、玫瑰、玻璃罩、狐狸、麦田和星星。
+
+## 文件
+
+[`subtitles.srt`](subtitles.srt) 是可以直接导入剪映的字幕时间表。
+
+[`prompts.md`](prompts.md) 保存视频生成 Prompt。Prompt 本身保持英文，因为它是直接交给视频模型的生产输入；周围说明使用中文。
+
+最终成片见 [`../../demo/little-prince-demo-web.mp4`](../../demo/little-prince-demo-web.mp4)。

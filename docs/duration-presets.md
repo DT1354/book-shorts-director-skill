@@ -1,44 +1,16 @@
-# Duration Presets and Custom Timing
+# 时长模式
 
-Use 60 seconds when the user does not specify duration. Duration changes the number of 10-second AI-video containers, narration density, and storyboard depth, but does not change the core SRT-first production workflow.
+默认成片 60 秒，同时支持 30、90、120 秒和自定义时长。
 
-## Standard presets
-
-| Target | 10s containers | Typical Chinese narration | Best for |
+| 时长 | 固定 10 秒容器 | 旁白参考 | 适合内容 |
 |---|---:|---:|---|
-| 30s | 3 | about 90 to 110 characters | one quote, one idea, one emotional turn |
-| 60s | 6 | about 180 to 210 characters | default balanced literary short |
-| 90s | 9 | about 270 to 315 characters | richer character arc or plot hook |
-| 120s | 12 | about 360 to 420 characters | fuller interpretation with more scene context |
+| 30 秒 | 3 | 约 90 到 110 字 | 单一金句、观点、情绪转折 |
+| 60 秒 | 6 | 约 180 到 210 字 | 默认，最均衡 |
+| 90 秒 | 9 | 约 270 到 315 字 | 更完整的人物或剧情弧线 |
+| 120 秒 | 12 | 约 360 到 420 字 | 更充分的文学解释 |
 
-Character counts exclude punctuation and are starting points, not quotas. Adjust to the selected TTS voice, the number of dramatic pauses, foreign names, and emotional delivery.
+自定义时长 `T` 使用 `ceil(T / 10)` 个视频容器。每个容器仍然生成 10 秒，旁白和 SRT 在目标时长前结束，多余尾部在剪映中裁掉。
 
-## Custom durations
+例如 45 秒需要 5 个生成片段。第 5 段依然生成 40 到 50 秒，但 45 秒处先设计一个自然结束状态，45 到 50 秒只保留简单可舍弃画面。
 
-For target duration `T` seconds:
-
-1. Compute generation containers as `ceil(T / 10)`.
-2. Keep every generated clip exactly 10 seconds.
-3. Keep every SRT entry inside both its 10-second container and the requested target duration.
-4. If `T` is not divisible by 10, trim the final generated clip at `T` in the editor.
-5. Make the target cut point visually clean. Keep any unused tail after the cut visually simple and disposable.
-
-Example: 45 seconds uses five 10-second generations. The fifth clip is generated as 40 to 50 seconds, narration ends by 45 seconds, and the editor trims 45 to 50 seconds.
-
-## Story depth by duration
-
-30 seconds: one hook, one book-specific scene or relationship, one insight, one clean ending image.
-
-60 seconds: one hook, setup, two or three development beats, interpretation, callback ending.
-
-90 seconds: allow one additional relationship, location, or consequence. Preserve one central question and use extra time for concrete book detail.
-
-120 seconds: allow a fuller arc with setup, development, cost, interpretation, and callback. Consider a series when multiple independent themes compete.
-
-## Timing density
-
-Keep 1 to 3 SRT entries per 10-second container. Prefer about 3.0 to 3.5 spoken Chinese characters per second across the whole target duration after accounting for pauses. Treat the final TTS voice as the source of truth and shorten text if it overruns.
-
-## Duration changes after approval
-
-Changing duration changes narration, SRT, container count, visual transitions, BGM curve, and prompt count. Treat it as a global revision and regenerate Phase A before proceeding to Phase B.
+时长越长，增加的是书籍细节、人物关系、环境变化和情绪层次。不要因为 120 秒就塞入多个互不相关的主题。

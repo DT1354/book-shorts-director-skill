@@ -1,27 +1,26 @@
-# SRT-driven Jianying / CapCut TTS
+# 剪映 SRT 与 TTS 工作流
 
-The project uses SRT as both subtitle data and narration rhythm control.
+这套方法已经通过实际剪映流程验证：导入 SRT 后，字幕块之间的真实时间空白可以用于控制文本朗读的停顿。
 
-A deliberate pause is created by leaving a real empty gap between subtitle entries. For example:
+## 操作
 
-```srt
-1
-00:00:00,300 --> 00:00:02,800
-世界上有那么多玫瑰，
+1. 导入 `.srt` 字幕。
+2. 检查每个字幕块是否处在预设位置。
+3. 全选字幕块。
+4. 选择同一个朗读音色、语速和风格。
+5. 批量生成文本朗读。
+6. 播放检查是否有一句读到下一条字幕开始之后。
+7. 超时优先删字，不先破坏所有停顿。
+8. 保留 SRT 作为最终字幕轨，需要时统一改字体和位置。
+9. 把固定 10 秒视频片段放到同一条时间轴。
+10. 加连续 BGM，并在人声出现时压低。
 
-2
-00:00:03,500 --> 00:00:06,200
-为什么只有一朵，
-```
+## 停顿原则
 
-The 0.7-second gap is preserved when the editor's batch text-to-speech respects imported subtitle timing.
+标点控制小节奏，SRT 空白控制大节奏。
 
-Recommended workflow:
+普通句间停顿通常 0.3 到 0.8 秒，强情绪停顿通常 0.8 到 1.5 秒。大多数 10 秒片段末尾留约 1 秒没有旁白，让画面和音乐完成转场。
 
-1. Import the SRT.
-2. Verify all subtitle blocks landed at the intended timestamps.
-3. Select all blocks.
-4. Apply one voice, speed, pitch, and style.
-5. Generate speech in batch.
-6. Check for overruns. Shorten copy before destroying important pauses.
-7. Keep the subtitle track for final captions or restyle it globally.
+## 为什么它稳定
+
+字幕、TTS 和视觉从一开始使用同一套时间码，因此不需要最后再靠人工猜测对齐。视频模型只负责画面和 SFX，中文旁白由后期统一完成。

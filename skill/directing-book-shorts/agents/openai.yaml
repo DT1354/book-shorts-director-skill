@@ -1,7 +1,7 @@
 interface:
-  display_name: Book Shorts Director
-  short_description: Build literary shorts with timed SRT, TTS pauses, and original editorial illustration
-  default_prompt: Use $directing-book-shorts to turn this book into a Chinese 9:16 literary short. Default to 60 seconds, but support 30s, 90s, 120s, or a custom duration. Use fixed 10-second video-generation containers, SRT-driven Jianying/CapCut TTS, book-specific editorial illustration art direction, and production-ready visual prompts.
+  display_name: 文学短视频导演
+  short_description: 把一本书变成可直接制作的 SRT、配音节奏、文学插画分镜和 10 秒视频生成方案
+  default_prompt: 使用 $directing-book-shorts 把这本书做成中文 9:16 文学短视频。默认 60 秒，同时支持 30、90、120 秒和自定义时长。用固定 10 秒视频容器、SRT 驱动剪映/CapCut 文本朗读、书籍专属文学编辑插画视觉体系，并输出可直接使用的生产级视频 Prompt。
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
 policy:

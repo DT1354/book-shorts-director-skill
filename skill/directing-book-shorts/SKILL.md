@@ -1,109 +1,100 @@
 ---
 name: directing-book-shorts
-description: Create production-ready Chinese literary book shorts with configurable duration, 10-second AI-video containers, SRT-driven Jianying/CapCut text-to-speech timing, deliberate pauses, and original book-specific editorial-illustration art direction. Use when turning a book, chapter, character, quote, theme, or plot idea into a 9:16 short, including 30s, 60s, 90s, 120s, or custom durations, with timed subtitles, post-produced TTS, BGM/SFX guidance, and standalone Omni-style generation prompts.
+description: 把书籍、章节、人物、金句、主题或剧情冲突制作成可直接执行的中文竖屏文学短视频方案。默认 60 秒，也支持 30、90、120 秒和自定义时长；以固定 10 秒 AI 视频容器组织镜头，用 SRT 精确控制剪映/CapCut 批量朗读的停顿与节奏，并为每本书建立独立的文学编辑插画视觉体系。适用于需要旁白、分镜、SRT 字幕、TTS 节奏、Omni 类视频生成 Prompt、BGM、SFX、转场与后期拼接说明的读书短视频制作。
 ---
 
-# Directing Book Shorts
+# Book Shorts Director
 
-Create a source-grounded Chinese book short that feels like a compact visual story. Design narration, subtitle timing, TTS pauses, book-specific art direction, and 10-second video-generation containers as one shared timeline.
+把一本书变成真正可制作的短视频项目。统一规划叙事、旁白、SRT、TTS 停顿、视觉风格、10 秒视频片段、转场、BGM 和 SFX，让所有环节共享同一条时间轴。
 
-## Defaults
+## 默认配置
 
-Use these defaults unless the user overrides them:
+除非用户明确修改，否则使用：
 
-- target duration: 60 seconds
-- duration presets: 30, 60, 90, and 120 seconds, plus custom durations
-- aspect ratio: `9:16`
-- AI-video container length: exactly 10 seconds per generation
-- narration language: Chinese
-- narration method: imported SRT subtitles plus batch text-to-speech in Jianying/CapCut when supported
-- narration structure: 1 to 3 subtitle/TTS blocks per 10-second container
-- pause design: encode pauses as empty time gaps between SRT entries
-- visual style: modern literary editorial illustration animation with clean 2D shapes, age-appropriate simplified characters, book-specific scenery, and restrained cinematic motion
-- generated video speech: none
-- generated visible text: none unless explicitly requested
+- 成片时长：60 秒
+- 可选时长：30、60、90、120 秒，以及自定义秒数
+- 画幅：9:16
+- AI 视频生成容器：每段固定 10 秒
+- 旁白语言：中文
+- 旁白方式：导入 SRT 后在剪映/CapCut 批量文本朗读
+- 每个 10 秒容器：1 到 3 个字幕/TTS 块
+- 停顿方式：通过 SRT 条目之间的真实空白控制
+- 默认视觉：现代文学编辑插画动态短片
+- 视频模型生成语音：关闭
+- 视频模型生成可见文字：默认关闭
 
-Do not re-ask for defaults. If the user gives only a book title, use 60 seconds. If the user requests another duration, honor it and recalculate the whole timeline.
+只有书名时，不追问默认项，直接使用 60 秒，并在方案中提醒可随时切换 30、90、120 秒或自定义时长。
 
-## Duration model
+## 时长系统
 
-Read `references/duration-presets.md` whenever the requested duration is not the 60-second default.
+非默认 60 秒时，读取 `references/duration-presets.md`。
 
-For target duration `T`:
+目标时长为 `T` 秒时：
 
-- if `T` is divisible by 10, create exactly `T / 10` 10-second video containers
-- otherwise create `ceil(T / 10)` 10-second containers, keep narration inside the requested target duration, and trim the unused tail of the final clip in the editor
-- never ask the video model for a non-10-second container in this workflow
-- never let a spoken sentence cross a 10-second boundary
+- `T` 能被 10 整除：生成 `T / 10` 个固定 10 秒容器
+- `T` 不能被 10 整除：生成 `ceil(T / 10)` 个固定 10 秒容器
+- 旁白与 SRT 必须在目标时长内结束
+- 最后一段多出的尾部在剪辑中裁掉
+- 任何一句旁白都不能跨越 10 秒边界
+- 不要求视频模型生成非 10 秒片段
 
-Standard presets:
+标准模式：30 秒 3 段；60 秒 6 段；90 秒 9 段；120 秒 12 段。
 
-- 30s: 3 containers, compact quote, insight, or single emotional turn
-- 60s: 6 containers, default balanced short
-- 90s: 9 containers, richer character or plot arc
-- 120s: 12 containers, fuller literary interpretation
+## 核心工作流
 
-## Workflow
+1. 核对原著与用户给出的材料。
+2. 确定目标时长，未指定则使用 60 秒。
+3. 确定单一中心问题或情绪张力。
+4. 只有书名或宽泛主题时，读取 `references/story-architectures.md`，给出恰好三个方向，标记一个推荐项，并停下来等用户选择。
+5. 用户选定方向后，读取 `references/visual-style-system.md`、`references/duration-presets.md`、`references/phase-a-contract.md`，输出 Phase A 导演预案。
+6. 等待明确确认。
+7. 确认后，读取 `references/srt-jianying-workflow.md`、`references/visual-style-system.md`、`references/duration-presets.md`、`references/phase-b-contract.md`。
+8. 先锁定最终旁白与 SRT 时间表，再写视觉 Prompt。
+9. 可创建文件时，使用 `scripts/build_srt.py` 生成并校验 `.srt`。
+10. 严格按照最终 SRT 的语义时间点，为每个 10 秒容器编写独立英文视频生成 Prompt。
+11. 读取 `references/voiceover-handoff.md`，给出剪映/CapCut TTS 交付说明。
+12. 用户询问 TTS 方案时，读取 `references/tts-options-2026.md`，并在能联网时核对最新官方资料。
 
-1. Ground the source.
-2. Resolve target duration. Use 60 seconds if unspecified.
-3. Choose the best storytelling angle.
-4. When only a book title or broad topic is given, read `references/story-architectures.md`, present exactly three direction options, mark one as recommended, and stop for selection.
-5. After selection, read `references/visual-style-system.md`, `references/duration-presets.md`, and `references/phase-a-contract.md`, then produce Phase A.
-6. Stop for explicit approval.
-7. After approval, read `references/srt-jianying-workflow.md`, `references/visual-style-system.md`, `references/duration-presets.md`, and `references/phase-b-contract.md`.
-8. Build the final subtitle/TTS schedule first. Keep every entry inside its assigned 10-second container and inside target duration.
-9. Create an `.srt` artifact with `scripts/build_srt.py`, passing target duration when file output is available.
-10. Use that exact SRT schedule and approved art direction to create one standalone English video-generation prompt per 10-second container.
-11. Read `references/voiceover-handoff.md` for Jianying/CapCut TTS handoff and local fallback guidance.
-12. If the user asks which TTS engine to use, consult `references/tts-options-2026.md` and verify current official documentation when web access is available.
+全局改变叙事方向、时长、视觉风格、旁白语言、画幅、美术方向或 TTS 时间，都需要重新确认 Phase A。
 
-Changing book angle, duration, visual style, narration language, aspect ratio, art direction, or TTS timing invalidates prior approval.
+## 原著真实性
 
-## Source grounding
+保持人物、情节、因果、主题和结局信息准确。优先转述，谨慎使用原句。不得虚构名句、人物动机、剧情、出版信息或作者观点。重大反转默认避免剧透，除非用户明确要求。
 
-Preserve the book's factual meaning, plot sequence, characters, and central themes. Prefer paraphrase. Do not invent scenes, motives, endings, statistics, publication facts, author claims, or famous quotes. Avoid major spoilers unless requested.
+## 留存与叙事规则
 
-## Retention rules
+一条视频只解决一个核心问题。时长变长也不要变成整本书摘要。开头优先使用冲突、悬念、痛点、反常识或强烈意象，并在大约 5 到 12 秒内让观众知道书名。
 
-Build around one central question or emotional tension. Do not summarize the whole book simply because the duration is longer. Prefer hook-first when unspecified and reveal the book within roughly 5 to 12 seconds. Every 10-second container must contain at least one book-specific prop, location, relationship, recurring motif, or plot action.
+每个 10 秒容器至少包含一个书籍专属场景、人物关系、物件、地点、动作或视觉意象。
 
-## Literary visual identity
+## 文学视觉体系
 
-Read `references/visual-style-system.md` before planning visuals.
+规划画面前读取 `references/visual-style-system.md`。默认采用原创的现代文学编辑插画，不使用传统骨架火柴人，也不默认写实 AI 电影人物。
 
-Default to an original literary editorial illustration look, not traditional stick figures and not a photorealistic AI-film look. For every book define:
+每本书在 Phase A 必须定义一个主背景或环境气质、最多三种强调色、三到五个书籍专属视觉意象，以及一个独特构图或环境特征。
 
-- one dominant background or atmospheric field
-- up to three accent colors with semantic roles
-- three to five book-specific recurring motifs
-- one distinctive compositional or environmental signature
+至少一个核心意象要在三段或更多片段中反复出现。大型元素必须与人物处在同一插画语言中。
 
-At least one motif must recur across three or more containers. Large symbolic objects must share the same illustration language as characters. Avoid photographic textures inside an illustrated world.
+读取 `references/demo-quality-benchmark.md` 时，把《小王子》Demo 只当作质量标杆，不复制它的色板和物件到其他书。
 
-## SRT and TTS timing
+## SRT 与 TTS
 
-Read `references/srt-jianying-workflow.md` before finalizing timing.
+最终时间规划前读取 `references/srt-jianying-workflow.md`。
 
-- use 1 to 3 SRT entries per 10-second container
-- use 0.3 to 0.8 seconds of silence between ordinary phrases
-- use 0.8 to 1.5 seconds for deliberate dramatic pauses
-- start after a short opening breath when practical
-- leave 0.8 to 1.5 seconds of visual breathing room near most container endings
-- never cross a 10-second boundary
-- never schedule narration beyond target duration
-- keep one TTS voice, speed, pitch, and style across all entries
+每个 10 秒容器通常安排 1 到 3 个 SRT 条目。普通停顿约 0.3 到 0.8 秒，戏剧性停顿约 0.8 到 1.5 秒。大多数容器结尾保留约 0.8 到 1.5 秒视觉呼吸。字幕条目不得跨越 10 秒边界，旁白不得超过目标时长，全片保持同一 TTS 音色、语速、音高和风格。
 
-If a selected voice overruns, shorten the copy before erasing important pauses.
+如果某句读不完，优先删减文字。
 
-## Visual continuity
+## 视觉连续性
 
-Keep recurring characters, proportions, palette, props, locations, and illustration treatment consistent. Design every full 10-second container with three beats: `0-3s` establish, `3-7s` transform/escalate, `7-10s` payoff and transition. For a custom duration that trims the final container, make the requested cut point visually clean and the unused tail safe to discard.
+保持角色比例、服装轮廓、色板、道具、地点和插画处理一致。每个完整 10 秒容器使用三个视觉节拍：0 到 3 秒建立，3 到 7 秒变化，7 到 10 秒回报与转场。
 
-## Narration separation
+自定义时长若需要裁掉最后一段尾部，目标切点必须是干净、可结束的画面状态。
 
-Do not ask the video model to speak Chinese. Do not embed Chinese narration inside generation prompts. Generate visuals, synchronized SFX, and restrained ambience only. Use the SRT as subtitle and TTS timing master. Keep BGM continuous across target duration and duck it beneath speech.
+## 旁白与视频生成分离
 
-## Final quality gate
+视频模型默认不说中文，不把旁白写进画面 Prompt，不生成字幕。视频片段只负责画面、同步 SFX 和克制环境声。SRT 同时承担字幕轨与 TTS 节奏主控。BGM 贯穿目标时长，并在人声出现时压低。
 
-Verify source grounding, natural spoken Mandarin, explicit duration, correct number of 10-second containers, SRT ending within target duration, no boundary-crossing subtitle blocks, real pause gaps, book-specific imagery in every container, a distinct palette and motif package, coherent illustration treatment, transition interfaces, no generated dialogue by default, and no unsupported quotation or factual claim.
+## 最终质量门
+
+交付前检查原著准确、中文旁白口语自然、目标时长明确、10 秒容器数量正确、SRT 不超时、没有跨 10 秒边界的字幕、停顿是真实时间空白、每段都有书籍专属元素、每本书有独立色板和意象、画面风格统一、转场接口明确、视频模型默认无对白、没有虚构引用或事实。

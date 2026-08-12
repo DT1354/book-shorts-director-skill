@@ -1,17 +1,41 @@
-# Production Workflow
+# 完整制作工作流
 
-## Phase A
+Book Shorts Director 的重点是把内容创作、声音和视频生成变成一个可重复的生产流程。
 
-Resolve the target duration first. Default to 60 seconds. Select one central question, then define narration architecture, per-book palette, recurring motifs, character locks, BGM curve, and one transition interface between every 10-second container.
+## 第一阶段：原著与选题
 
-Stop for approval before producing final SRT timestamps or generation prompts.
+先确认书籍、人物、主题或用户提供的章节。只选择一个中心问题，例如“为什么那朵玫瑰会变得不可替代”，不要直接做整本书摘要。
 
-## Phase B
+只有书名时，给出三个方向：每个方向说明 Hook、使用哪部分原著、最后给观众留下什么情绪或理解，并标记一个推荐项。
 
-Build the SRT timeline before writing visual prompts. Each spoken block must remain inside its 10-second container. Use timeline gaps for pauses. Then write one standalone English visual prompt per 10-second generation, synchronized to the approved narration meaning.
+## 第二阶段：Phase A 导演预案
 
-The video model produces visuals, ambience, and SFX only. Chinese narration is added in post from the SRT-driven TTS workflow.
+用户选定方向后，确定目标时长、10 秒容器数量、旁白草稿、文学视觉体系、书籍专属意象、BGM 曲线、SFX 和每段转场接口。
 
-## Edit
+Phase A 只做导演设计，不提前生成最终时间码。
 
-Place all generated clips at exact 10-second boundaries. Import the SRT, generate one consistent TTS voice, keep the SRT as the subtitle layer, add one continuous BGM track, and duck BGM/SFX under speech.
+## 第三阶段：锁定 SRT
+
+用户确认后，先写最终旁白，再把旁白拆成 SRT 条目。普通停顿用 0.3 到 0.8 秒空白，强调停顿可以达到 0.8 到 1.5 秒。
+
+任何字幕条目都不能跨越 10 秒视频边界。
+
+## 第四阶段：剪映 / CapCut 配音
+
+导入 SRT，确认字幕块位置，全选字幕块，使用同一音色、语速和风格批量文本朗读。若某句话读过下一条开始点，优先缩短文字。
+
+## 第五阶段：视频生成
+
+每个 10 秒容器一条独立英文 Prompt。每条 Prompt 自己包含人物、场景、色板、首帧、三段时间节拍、镜头、SFX、末帧转场和禁止项。
+
+视觉模型不负责中文旁白和字幕。
+
+## 第六阶段：合成
+
+把 10 秒片段放入同一条时间轴，保留有价值的同步 SFX，铺一条连续 BGM。BGM 和密集 SFX 在人声区域压低。
+
+目标时长不能被 10 整除时，在最后一个容器的目标切点裁尾。
+
+## 质量检查
+
+成片前确认：主题只有一个，原著信息准确，旁白口语自然，停顿真实存在，人物与色板连续，每段有书籍专属元素，转场接口明确，视频模型没有生成多余对白或字幕。

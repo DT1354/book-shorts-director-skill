@@ -1,9 +1,9 @@
 # Demo
 
-This project was developed and tested with a completed 60-second *The Little Prince* short.
+当前真实成片：[`little-prince-demo-web.mp4`](little-prince-demo-web.mp4)
 
-The original rendered MP4 is approximately 60 seconds, 9:16, and was produced from six 10-second AI-video generations plus SRT-driven Jianying/CapCut narration. The repository keeps a lightweight SVG preview in Git so the project remains easy to clone.
+这是使用 Book Shorts Director 完成的 60 秒《小王子》案例。它验证了固定 10 秒视频容器、SRT 停顿、剪映批量文本朗读和文学编辑插画视觉体系可以在同一条时间轴上稳定工作。
 
-The production source package is documented in `../examples/the-little-prince/`, including the exact SRT timing and six visual prompt beats.
+首页使用 `little-prince-demo.svg` 作为预览封面，点击后打开完整 MP4。
 
-If you maintain a rendered-video asset in the repository, use a compressed web copy such as `little-prince-demo.mp4` and keep the original high-bitrate export outside Git.
+GitHub 若要在 README 中显示原生内嵌视频播放器，需要把 MP4 作为 GitHub Markdown 附件上传，获得 `github.com/user-attachments/assets/...` 地址，再把该地址单独放进 README。
