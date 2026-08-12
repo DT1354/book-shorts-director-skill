@@ -1,47 +1,61 @@
-# Literary Editorial Illustration System
+# 文学编辑插画视觉系统
 
-Use this reference whenever planning or writing visual prompts. Default to modern literary editorial illustration animated with restrained cinematic motion.
+用于所有 Phase A 美术规划和 Phase B 视频 Prompt。默认目标是现代文学编辑插画被轻度电影化动画，而非儿童火柴人或写实 AI 微电影。
 
-## Account-wide identity
+## 账号级统一气质
 
-Keep a family resemblance through sophisticated 2D editorial illustration, clean silhouettes, crisp linework, flat separated color shapes, strong negative space, phone-readable composition, book-specific scenery, and cinematic moves such as push-ins, tracking, parallax, match cuts, foreground wipes, and controlled scale changes.
+跨书籍保持以下家族特征：
 
-Avoid traditional skeletal stick figures, generic productivity icons, photorealistic AI actors, dirty paper grain, muddy gray-brown grading, heavy vintage filters, and accidental photographic inserts.
+- 成熟的二维文学编辑插画
+- 年龄合适、比例简化但有设计感的人物
+- 清晰线稿配合干净、分离的平涂色块
+- 高对比、清楚边界、大量可控留白
+- 手机竖屏优先构图
+- 推镜、跟拍、视差、形状匹配、前景擦拭、尺度变化等克制电影镜头
+- 用图形化光影和平涂明暗替代照片式照明
+- 默认拒绝脏纸颗粒、灰褐滤镜、颜色污染、重度复古磨损
 
-## Character design
+## 人物设计
 
-Use age-appropriate proportions. Simplify faces to minimal marks or no facial detail when consistency is difficult. Allow clothing silhouettes, hats, coats, dresses, uniforms, or period shapes when they identify the book. Keep anatomy stable and repeat silhouette, proportions, clothing language, and key props across containers.
+重复角色必须保持年龄和身体比例、头身关系、服装轮廓、主要道具、发型或帽子特征、线条粗细。
 
-## Per-book art direction
+五官可以极简，必要时完全省略。允许时代服装、外套、裙装、制服和帽子帮助建立作品身份。
 
-Define before Phase A approval:
+不要默认做骨架火柴人，也不要无故长出写实皮肤、毛孔、复杂手指和摄影头发。
 
-1. one dominant background or atmospheric field
-2. up to three accent colors with semantic roles
-3. three to five book-specific recurring motifs
-4. one distinctive environmental or compositional signature
+## 每本书自己的视觉包
 
-Examples of design logic:
+Phase A 确认前定义四件事：主背景或整体环境气质，最多三种强调色及其语义，三到五个书籍专属视觉意象，一个独特的环境或构图特征。
 
-- The Moon and Sixpence: deep ink blue, ivory, warm gold, restrained tropical teal; moon, coin, easel, attic window, tropical foliage
-- The Stranger: bleached sand, black, searing orange; sun disk, beach horizon, courtroom light, barred window
-- The Little Prince: deep cobalt, warm star gold, rose red; tiny planet, rose, fox, desert, stars
-- One Hundred Years of Solitude: deep green, yellow gold, muted red; rain, old house, tropical plants, yellow butterflies
+示例只代表设计逻辑：
 
-Build an original art direction from themes and motifs. Do not copy a specific published cover or named illustrator.
+- 《月亮与六便士》：深墨蓝、象牙白、暖金、克制热带青绿；月亮、硬币、画架、阁楼窗、热带植物
+- 《局外人》：苍白沙色、黑、炽热橙；烈日、海滩地平线、汗水、法庭光、栅栏窗影
+- 《小王子》：深钴蓝、暖星金、玫瑰红；小星球、玫瑰、狐狸、麦田、星星
+- 《百年孤独》：深绿、金黄、暗红；雨、老屋、热带植物、黄色蝴蝶、循环式家族意象
 
-## Motif rule
+不得复制具体出版封面或点名模仿某位在世插画师。根据主题、时代、地点、人物和意象建立原创系统。
 
-Every 10-second container must contain at least one book-specific motif, setting detail, prop, relationship, or plot action. At least one motif should recur across three or more containers when the short has at least three containers.
+## 书籍专属意象规则
 
-## Image treatment
+每个 10 秒容器至少出现一个真实属于这本书的地点、关系、物件、动作或意象。
 
-Moons, suns, oceans, buildings, plants, animals, and objects must share the same illustration language as characters. Prefer flat shapes, crisp linework, simplified tonal blocks, restrained hatching, or subtle graphic texture. Keep colors clean and separated.
+至少一个核心意象在三段或更多片段中重复出现，通过变形、匹配转场、回忆和尺度变化复用，避免机械重复同一镜头。
 
-## Motion treatment
+抽象圆形、箭头、UI 卡片和通用效率图标只能辅助理解，不得替代书籍自身的具象内容。
 
-Animate the illustration to reveal story and meaning. Create a perceptible change every two to three seconds without turning the piece into a generic motion-graphics demo. Use concrete literary imagery and meaningful transformations.
+## 大型元素统一
 
-## Quality gate
+月亮、太阳、海洋、城市、植物、动物、建筑和家具必须与人物使用同一插画处理。
 
-Verify that the result reads as literary editorial illustration at first glance, recurring characters look designed, the book has a distinct palette and motif package, scenery and props are specific to the book, symbolic objects share the same visual language, and the composition remains clean on a phone.
+自然纹理应简化成图形纹、平涂明暗、克制排线或小面积笔触。避免平面角色突然搭配照片月球、图库海滩、写实动物或高光 3D 道具。
+
+## 动效原则
+
+动画服务叙事，不做纯炫技 Motion Graphic。
+
+每两到三秒产生一次有意义的可见变化，例如人物动作、环境改变、物件交互、镜头推进、前景擦拭、形状变形或意象转场。
+
+## 质量门
+
+确认成片第一眼像文学编辑插画；人物有设计感；本书拥有独特色板和意象；场景与道具具体；大型元素和人物在同一视觉世界；没有意外写实素材；画面干净、清透、手机可读。

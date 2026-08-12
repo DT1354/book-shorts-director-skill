@@ -1,59 +1,39 @@
-# Phase B Production Contract
+# Phase B 生产交付规范
 
-Use only after explicit approval of Phase A. Read `visual-style-system.md`, `duration-presets.md`, and `srt-jianying-workflow.md` before production.
+仅在用户明确确认 Phase A 后使用。
 
-Deliver in this order:
+开始前读取 `visual-style-system.md`、`duration-presets.md` 和 `srt-jianying-workflow.md`。
 
-1. final SRT timing plan for target duration
-2. SRT artifact when file creation is available
-3. global literary visual continuity block
-4. one standalone English video-generation prompt per 10-second container
-5. Jianying/CapCut voiceover handoff
-6. stitching guide
-7. optional post-production overlays
-8. voice and music continuity note
+按顺序交付：最终 SRT 时间计划，可下载的 SRT 文件，全局文学视觉锁定，每个 10 秒容器一条独立英文视频生成 Prompt，剪映/CapCut 配音交付说明，拼接指南，可选后期文字，音色与音乐连续性说明。
 
-## SRT timing plan
+## SRT 计划
 
-Create exact timestamps for every Chinese narration block. Start at or after `00:00:00,200` unless immediate speech is creatively necessary. End no later than approved target duration. Use 1 to 3 entries per used container, encode ordinary pauses as roughly 0.3 to 0.8 seconds and dramatic pauses as roughly 0.8 to 1.5 seconds, leave breathing room near most 10-second boundaries, and never let an entry cross a 10-second boundary.
+精确到毫秒。通常从 0.2 到 0.4 秒后开始，所有条目必须在目标时长前结束。
 
-When code/file output is available, create the final `.srt` using `scripts/build_srt.py --duration <seconds>` and UTF-8 with BOM.
+每个 10 秒容器默认 1 到 3 个条目。普通停顿约 0.3 到 0.8 秒，强停顿约 0.8 到 1.5 秒。大多数容器边界附近留呼吸空间。
 
-## Global visual continuity
+任何条目都不能跨 10 秒边界。
 
-State aspect ratio, target duration, count of fixed 10-second containers, final trim point when needed, illustration treatment, character locks, dominant field, accent colors, recurring motifs, environmental signature, camera language, SFX strategy, and transition chain.
+先给用户紧凑时间表。可创建文件时，使用 `scripts/build_srt.py --duration <秒数>` 生成 UTF-8 BOM 的 `.srt`。
 
-## Standalone prompt order
+## 全局视觉锁定
 
-Write each prompt in English and make it understandable on its own. Include:
+明确画幅、目标时长、10 秒容器数量、最终裁剪点、插画处理、重复角色与服装轮廓、主背景、强调色及语义、书籍专属意象、贯穿意象、环境特征、镜头语言、SFX 策略和完整转场链。
 
-1. exactly 10-second output, chosen aspect ratio, 720p target, 24 FPS
-2. approved literary editorial illustration treatment
-3. stable character, clothing, prop, and environment locks
-4. approved base field and up to three accent colors
-5. relevant book-specific motifs and setting cues
-6. mobile-first composition
-7. exact inherited first-frame state
-8. `[0-3s]`, `[3-7s]`, `[7-10s]` visual beats
-9. narration concept active during those beats without displaying or speaking Chinese text
-10. camera motion, object transformation, synchronized SFX
-11. exact final-frame transition state
-12. negative constraints
+## 独立视频 Prompt
 
-For a final container that will be trimmed, state the target cut timestamp inside that container. Make the used portion resolve cleanly and keep unused tail simple and safe to discard.
+每条 Prompt 使用英文，并且单独复制给视频模型也能完整理解。
 
-## No generated narration
+依次包含 exactly 10-second output、画幅、720p、24 FPS；已确认的文学编辑插画风格；稳定角色、服装、道具和环境锁定；主背景与最多三种强调色；当前片段涉及的书籍专属意象和场景提示；手机竖屏优先构图；精确首帧继承状态；`[0-3s]`、`[3-7s]`、`[7-10s]` 三段视觉节拍；当前旁白语义对应的视觉内容但不得把中文旁白写到画面里或说出来；镜头运动、物件变化和同步 SFX；精确末帧转场状态；Negative constraints。
 
-Do not include spoken Chinese or dialogue in generation prompts. Request synchronized environmental SFX and restrained ambience only. Do not generate visible words, captions, book text, logos, or watermarks unless explicitly approved.
+自定义时长最后一段需要裁尾时，在目标切点先形成一个可用结束状态，之后尾部保持简单。
 
-## Illustration consistency
+## 风格一致性
 
-Keep all elements inside one illustration world. Stylize moons, suns, oceans, buildings, trees, clothing, animals, furniture, and props to match character treatment. Forbid accidental photorealism, unrelated 3D rendering, traditional skeletal stick figures unless approved, unstable anatomy, photographic textures, muddy grading, unexplained accent colors, generic productivity-icon storytelling, visible writing, and generated narration.
+太阳、月亮、海洋、建筑、动物、植物、家具和道具与人物使用同一插画语言。优先平涂、清晰线条、图形化明暗和克制深度。
 
-## Jianying / CapCut handoff
+禁止意外写实、无关 3D、传统骨架火柴人、角色比例漂移、服装漂移、额外肢体、摄影纹理、灰褐脏色、无理由新增强调色、通用效率图标替代书籍内容、可见书摘或字幕、Logo、水印、视频模型对白和旁白。
 
-Tell the user to import SRT, verify timing, select all subtitle blocks, apply one TTS voice/speed/style, generate speech in batch, and preserve encoded gaps. If a line overruns, shorten text before sacrificing important pauses.
+## 剪映交付与拼接
 
-## Stitching
-
-List all containers in order. Repeat every ending state and matching opening state. Mention match cuts, short audio crossfades, SFX bridges, and BGM continuity. Keep each generation at 10 seconds and trim only the unused tail of the final container for non-multiple-of-10 targets.
+导入 SRT，批量选择字幕块，使用同一音色朗读，保持空白停顿。逐段写明上一段末帧和下一段首帧如何匹配，以及是否需要 Match Cut、短音频 Crossfade、SFX 桥接或连续 BGM。

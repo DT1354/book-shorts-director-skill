@@ -1,27 +1,45 @@
-# Story Architectures
+# 叙事结构库
 
-Choose one architecture that creates the strongest single-thread short. Do not force all of them into one video.
+只选最适合当前书和主题的一种主结构，不要在一分钟内把所有结构混在一起。
 
-## 1. Quote or insight reflection
+## 1. 金句或感悟型
 
-Use for a sentence, idea, or emotional takeaway. Hook with a relatable tension, reveal the book, paraphrase the key idea, connect it to a concrete scene or character moment, explain the underlying principle, then return it to the viewer's life. Avoid generic motivational copy.
+适合一句话、一个意象、一种情绪理解。
 
-## 2. Plot hook
+结构：现实张力开场，出现书名，给出核心理解，回到具体人物或场景，解释它为什么成立，最后把问题交还给观众。
 
-Use when the book has a strong situation, mystery, reversal, or moral conflict. Open inside the situation, escalate without overexplaining, reveal the book, show consequence or turning point, explain what the story tests, then close with a question or emotional aftertaste. Protect major twists unless spoilers are requested.
+避免写成与原著无关的通用鸡汤。
 
-## 3. Character fate
+## 2. 剧情钩子型
 
-Use for character-driven fiction, classics, biography, or memoir. Pose a question about the character, show desire or contradiction, show one decisive relationship or event, reveal the cost of the choice, explain what it exposes about people or society, and return to the opening question.
+适合强设定、悬念、反转或道德冲突。
 
-## 4. One idea from the whole book
+结构：直接进入异常情境，逐步升级，出现书名，展示后果或转折，解释故事真正考验的是什么，最后留一个问题或余味。
 
-Use for psychology, philosophy, self-development, business, or social science. Start with a real-life problem, introduce one useful concept, visualize its mechanism, show one implication, and end with a memorable reframe. Explain one concept deeply instead of compressing an entire framework.
+默认保护重大反转。
 
-## Opening styles
+## 3. 人物命运型
 
-Prefer hook-first for retention and reveal the book within roughly 5 to 12 seconds. Use direct-share when the creator wants a recognizable book-account format such as `今天分享的是《书名》` followed immediately by a strong question, scene, or insight.
+适合小说、传记和人物驱动作品。
 
-## Ending styles
+结构：先问一个关于人物的问题，展示欲望或矛盾，进入关键关系或事件，展示选择的代价，再解释人物折射出的人性或社会问题，最后回到开头的问题。
 
-Choose an emotional callback, reflective question, practical reframe, motif callback, or quiet book recommendation. Avoid generic calls to action unless requested.
+不要随意给人物做心理诊断。
+
+## 4. 全书一个观点
+
+适合心理学、哲学、商业、社科，也可以用于文学作品中的单一思想。
+
+结构：现实问题开场，具体例子加深冲突，引出书中的一个概念或主题，用场景展示它怎么运作，给出一个可理解的影响，最后形成简洁重构。
+
+一次只讲一个概念。
+
+## 开场方式
+
+默认优先 Hook 型。书名通常在 5 到 12 秒内出现。
+
+用户明确要求账号感更强时，可以直接使用“今天分享的是《书名》”，紧接一个问题或冲突。
+
+## 结尾方式
+
+从以下选择一种：回到开场意象、反问、简短重构、人物或物件回环、安静推荐。避免默认加入关注点赞等口播。

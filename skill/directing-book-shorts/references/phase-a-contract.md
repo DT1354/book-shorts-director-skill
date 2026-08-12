@@ -1,54 +1,50 @@
-# Phase A Director Proposal Contract
+# Phase A 导演预案规范
 
-Produce a readable Chinese director proposal and stop for explicit approval before creating final SRT or video-generation prompts.
+只输出可读的中文导演预案，等待用户明确确认后再生成最终 SRT 和视频 Prompt。
 
-Read `visual-style-system.md` and `duration-presets.md` first.
+开始前读取 `visual-style-system.md` 和 `duration-presets.md`。
 
-## Header
+## 头部信息
 
-Present, in order:
+按顺序说明：中文视频标题，书名与作者，叙事结构，Opening Hook，一句话核心表达，剧透程度，画幅与目标时长，固定 10 秒容器数量及裁尾要求，文学编辑插画方向，主背景或环境气质，最多三种强调色及语义，三到五个书籍专属意象，独特构图或环境特征，旁白音色方向与参考字数，BGM 方向与情绪曲线。
 
-1. Chinese video title
-2. book title and author when reliably known
-3. selected narrative architecture
-4. opening hook
-5. one-sentence core message
-6. spoiler level
-7. aspect ratio and target duration
-8. number of fixed 10-second generation containers and any final trim requirement
-9. chosen literary editorial illustration direction
-10. dominant background or atmospheric field
-11. up to three accent colors and semantic roles
-12. three to five book-specific recurring motifs
-13. one distinctive environmental or compositional signature
-14. narration voice direction and estimated Chinese character count
-15. BGM direction and emotional curve
+若用户未指定时长，明确写“默认 60 秒，可改为 30、90、120 秒或自定义”。
 
-## Narration architecture
+## 旁白架构
 
-Write natural spoken Chinese around the selected number of 10-second containers. Use `duration-presets.md` for density targets. Keep every spoken sentence inside one container. Use 1 to 3 short spoken blocks per used container. Prefer concrete images, short sentences, clean pauses, and one central question. Avoid essay-like syntax and overloaded abstractions.
+根据时长模式控制字数。每个 10 秒容器安排 1 到 3 个短口语块，任何一句都不能跨容器。
 
-Reserve about 0.8 to 1.5 seconds of non-speech breathing room near most container endings when practical. Phase A timing may be approximate. Exact SRT timestamps belong to Phase B.
+优先短句、自然呼吸和具象画面。减少论文式长句、抽象堆叠和连续反问。
 
-## Storyboard
+大多数容器结尾预留约 0.8 到 1.5 秒无旁白空间。Phase A 只做大致节奏，毫秒级时间码留到 Phase B。
 
-Produce exactly one row per generation container using:
+## 分镜表
 
-| Time | Narrative job | Book-specific scene and motif | Three visual beats | Camera and transition | Draft Chinese narration | Pause intention | BGM and SFX |
+每个生成容器一行，列为：
+
+| 时间 | 叙事任务 | 书籍专属场景与意象 | 三段视觉节拍 | 镜头与转场 | 中文旁白草稿 | 停顿意图 | BGM 与 SFX |
 |---|---|---|---|---|---|---|---|
 
-Generate consecutive 10-second windows from `00:00-00:10`. If target duration is not divisible by 10, mark the final row with the exact cut point and identify the unused tail that will be trimmed.
+时间从 `00:00-00:10` 连续排列。目标时长不能被 10 整除时，在最后一行标记最终切点和要舍弃的尾部。
 
-Give every row a distinct narrative job and at least one book-specific visual element. Make at least one motif recur in three or more rows when there are at least three containers.
+每一行承担不同叙事任务，每行至少一个书籍专属元素。片段不少于三段时，至少一个核心意象贯穿三段或更多。
 
-## Visual design
+## 视觉设计
 
-Use modern literary editorial illustration animation: clean 2D illustration, age-appropriate simplified figures, crisp linework, flat separated color shapes, strong negative space, and book-specific scenery. Do not default to traditional stick figures or photorealistic AI actors. Do not mix flat characters with photographic moons, stock textures, or unrelated 3D objects.
+默认现代文学编辑插画。使用干净二维插画、年龄适配人物、清晰线条、分离色块、大量留白和作品专属环境。
 
-## Continuity
+默认不使用传统火柴人，不使用写实 AI 演员，不把摄影月亮、图库纹理或无关 3D 物件塞进平面插画世界。
 
-Name the transition interface between every adjacent pair. Use a pose, object, color field, moving camera, shape, prop, light source, doorway, page turn, falling object, brush stroke, weather element, or another visible state that can be matched across clips. Use the final 1 to 1.5 seconds as a transition zone when practical. For a trimmed final container, make the target cut point visually clean.
+画面内默认不生成对白、书摘、字幕、界面文字或标签。最终字幕由 SRT 后期添加。
 
-## Approval ending
+## 连续性
 
-Ask the user to approve the current proposal, revise a named scene/narration/palette/motif/duration, or change a global setting. Do not include final SRT timestamps or final video-generation prompts before approval.
+为每一对相邻片段命名一个具体转场接口，例如姿势、道具、色块、光源、门、花瓣、雨、笔触、前景擦拭或形状匹配。
+
+完整 10 秒容器尽量把最后 1 到 1.5 秒作为转场区。需要裁剪的最终容器在目标切点形成干净结束。
+
+## 结束方式
+
+让用户选择：确认并生成精确 SRT 与生产 Prompt；修改某个场景、旁白、色板、意象、时长或视觉处理；更换全局叙事方向。
+
+未确认前不要给最终 SRT 时间码和最终视频生成 Prompt。

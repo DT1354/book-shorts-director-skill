@@ -1,38 +1,44 @@
-# Duration Presets and Custom Timing
+# 时长模式与自定义时间轴
 
-Use 60 seconds when duration is unspecified. Duration changes container count, narration density, storyboard depth, transitions, and BGM curve while preserving the SRT-first workflow.
+用户没有指定时长时，默认 60 秒。时长会改变 10 秒容器数量、旁白密度、分镜深度、转场数量和 BGM 情绪曲线，但不改变 SRT 优先的核心工作流。
 
-## Standard presets
+## 标准模式
 
-| Target | 10s containers | Typical Chinese narration | Best for |
+| 目标时长 | 10 秒容器 | 中文旁白参考字数 | 适合内容 |
 |---|---:|---:|---|
-| 30s | 3 | about 90–110 characters | one quote, idea, or emotional turn |
-| 60s | 6 | about 180–210 characters | default balanced literary short |
-| 90s | 9 | about 270–315 characters | richer character or plot arc |
-| 120s | 12 | about 360–420 characters | fuller interpretation |
+| 30 秒 | 3 | 约 90 到 110 字 | 一个金句、观点或情绪转折 |
+| 60 秒 | 6 | 约 180 到 210 字 | 默认，最均衡的文学短片 |
+| 90 秒 | 9 | 约 270 到 315 字 | 更丰富的人物、关系或剧情弧线 |
+| 120 秒 | 12 | 约 360 到 420 字 | 更完整的文学解读 |
 
-Character counts exclude punctuation and are starting points, not quotas.
+字数不含标点，只是起点。最终以用户选择的 TTS 音色实际朗读速度为准。
 
-## Custom durations
+## 自定义时长
 
-For target duration `T` seconds:
+目标时长为 `T` 秒：
 
-1. Compute containers as `ceil(T / 10)`.
-2. Keep every generated clip exactly 10 seconds.
-3. Keep every SRT entry inside both its 10-second container and target duration.
-4. If `T` is not divisible by 10, trim the final clip at `T` in the editor.
-5. Make the target cut point visually clean and keep any unused tail simple and disposable.
+1. 容器数量使用 `ceil(T / 10)`。
+2. 每个 AI 视频片段仍固定生成 10 秒。
+3. 每个 SRT 条目同时受 10 秒容器和目标时长约束。
+4. `T` 不能被 10 整除时，在剪辑中裁掉最后一段多余尾部。
+5. 目标切点要能自然结束，多余尾部保持简单、可舍弃。
 
-Example: 45 seconds uses five 10-second generations. Narration ends by 45 seconds and the editor trims 45–50 seconds.
+例如 45 秒使用 5 个 10 秒生成片段，旁白和字幕在 45 秒前结束，最终裁掉 45 到 50 秒。
 
-## Story depth
+## 不同时长的叙事深度
 
-30s: one hook, one concrete book scene or relationship, one insight, one clean ending image.
+30 秒：一个 Hook，一个书籍专属场景或关系，一个核心理解，一个干净结尾。
 
-60s: hook, setup, development, interpretation, callback ending.
+60 秒：Hook、建立、发展、理解、回环结尾。
 
-90s: allow an additional relationship, location, or consequence while preserving one central question.
+90 秒：允许增加一组关系、地点或后果，但仍然只围绕一个中心问题。
 
-120s: allow a fuller arc with setup, development, cost, interpretation, and callback. Recommend a series if multiple independent themes compete.
+120 秒：可以拥有更完整的起承转合、代价、理解和回收。若用户想同时讲多个独立主题，优先建议拆成系列。
 
-Keep 1 to 3 SRT entries per 10-second container. About 3.0 to 3.5 spoken Chinese characters per second across the full target duration is a useful starting point after pauses. Treat the selected TTS voice as source of truth.
+## 旁白密度
+
+每个 10 秒容器保持 1 到 3 个 SRT 条目。全片在留足停顿后，平均每秒约 3.0 到 3.5 个汉字可以作为初始参考。最终以实际 TTS 为准，超时就删字。
+
+## 已确认方案后改时长
+
+时长变化会影响旁白、SRT、容器数量、转场链、BGM 曲线和 Prompt 数量，视为全局修改，需要重新生成并确认 Phase A。

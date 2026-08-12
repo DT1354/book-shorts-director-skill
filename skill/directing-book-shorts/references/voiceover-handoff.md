@@ -1,31 +1,33 @@
-# Chinese Voiceover Handoff
+# 中文旁白交付
 
-Default to SRT-driven TTS when the user's Jianying/CapCut version preserves imported subtitle timing during batch text-to-speech.
+用户的剪映/CapCut 能保留导入 SRT 的时间空白时，默认使用 SRT 驱动 TTS。
 
-## Recommended order
+## 推荐顺序
 
-1. Finalize timed SRT entries.
-2. Import the `.srt` file.
-3. Confirm subtitle timing and pause gaps.
-4. Select all subtitle blocks and apply one consistent TTS voice, speed, pitch, and style.
-5. Generate speech in batch.
-6. Listen for any line overrunning the next block.
-7. Shorten overlong lines before sacrificing important pauses.
-8. Keep SRT as final subtitles and restyle globally if desired.
-9. Place fixed 10-second visual clips on the same timeline.
-10. Add one continuous BGM track and preserve useful synchronized SFX.
-11. Duck BGM and dense SFX beneath speech.
+最终旁白拆成带时间码的 SRT，导入后确认字幕位置和停顿空白，全选字幕块，统一音色、语速、音高和风格，批量生成文本朗读。检查是否有句子读过下一条开始时间，超时优先删字。保留 SRT 作为最终字幕轨，放入固定 10 秒视觉片段，自定义时长按目标点裁尾，再加连续 BGM 和有价值的同步 SFX，并在人声区域压低。
 
-## TTS-ready script rules
+## 为什么让 SRT 做时间主控
 
-Keep sentences short enough for natural breath groups. Use punctuation for small prosodic cues and separate SRT entries for deliberate pauses. Avoid excessive semicolons, parentheses, and nested clauses. Spell out ambiguous numbers when pronunciation matters. Add pronunciation notes outside spoken subtitle text. Keep foreign names consistent.
+SRT 空白是真实静音，可以直接控制节奏，不依赖 TTS 对逗号、句号和换行的主观理解。
 
-## Voice direction
+旁白边界又与固定 10 秒视频容器对齐，因此 30、60、90、120 秒和自定义时长都能使用同一生产逻辑。
 
-Default to a warm, clear adult Mandarin narrator with restrained emotion and documentary-like intimacy. Hook sections may be slightly faster and more precise; plot escalation uses controlled tension; reflection is slower and warmer; endings should be calm and memorable with a clear pause after the final line.
+## 旁白文案规则
 
-## Local TTS fallback
+短句优先。逗号句号负责微节奏，明显停顿使用独立 SRT 条目。减少分号、括号和嵌套长句。人名、地名统一写法。发音说明写在 spoken text 外。
 
-If Jianying/CapCut batch reading is unavailable or fails to preserve timing, keep the same SRT schedule and generate one audio file per SRT entry with identical voice settings, then place each file at the entry's start timestamp. Prefer Fun-CosyVoice 3 as a general Mandarin baseline and compare GPT-SoVITS when an authorized signature voice is the priority.
+## 默认声音方向
 
-Use voice cloning only when the user owns the voice or has permission to use it.
+温暖、清晰、成年中文旁白，情绪克制，像纪录片或深夜讲书，避免广告腔和过度激情。
+
+Hook 稍快、清楚；剧情升级保持控制；理解段放慢、变暖；结尾安静，并在最后一句后留明显空间。
+
+## 本地 TTS 备用方案
+
+若剪映/CapCut 不能批量朗读或无法保留时间空白，继续沿用同一 SRT 时间表，每个 SRT 条目单独生成音频，并在条目开始时间放置。
+
+一般中文本地方案优先测试 Fun-CosyVoice 3；需要固定授权签名音色时比较 GPT-SoVITS。具体版本与许可见 `tts-options-2026.md`。
+
+## 声音权利
+
+只有在用户拥有声音或得到明确授权时才使用克隆音色。不要默认拿公众人物或网络公开视频作为克隆素材。

@@ -1,42 +1,33 @@
-# SRT-Driven Jianying / CapCut TTS Workflow
+# SRT 驱动剪映 / CapCut TTS 工作流
 
-Use one shared timeline for subtitles, TTS, and visuals. Every AI-video generation remains 10 seconds. SRT entries sit inside those containers, imported SRT becomes the subtitle track, batch text-to-speech creates narration from the blocks, and empty gaps create intentional pauses.
+适用于剪映/CapCut 能够导入 SRT，并在批量文本朗读时保留字幕块时间位置的版本。
 
-## Container rule
+## 生产模型
 
-Never let an SRT entry cross a 10-second boundary. Never schedule an entry after target duration. If target duration is not divisible by 10, the final generation is still 10 seconds but narration ends by the requested cut point.
+旁白、字幕、TTS 和画面共享同一条时间轴。AI 视频片段固定 10 秒，SRT 条目放在这些固定容器内部，导入后形成字幕轨，全选字幕块用同一音色批量文本朗读，SRT 条目之间的空白就是真实停顿，BGM 贯穿全片，AI 视频只保留画面、SFX 和环境声。
 
-## Timing recipe
+## 时间规则
 
-A practical two-entry container:
+任何字幕条目都不能跨越 10 秒边界。
 
-- first phrase around `+0.3s` to `+3.4s`
-- 0.4–0.7s pause
-- second phrase around `+4.0s` to `+8.4s`
-- 1.0–1.6s visual/BGM breathing room
+常见两块节奏：第一句大约从容器内 0.3 秒开始，到 3.4 秒左右结束；停 0.4 到 0.7 秒；第二句大约从 4.0 秒开始，到 8.4 秒左右结束；最后留 1.0 到 1.6 秒视觉呼吸。
 
-A practical three-entry container:
+常见三块节奏：0.3 到 2.7 秒，短停，3.1 到 5.7 秒，再停，6.3 到 8.8 秒，最后留约 1 秒。
 
-- entry 1 around `+0.3s` to `+2.7s`
-- 0.3–0.5s pause
-- entry 2 around `+3.1s` to `+5.7s`
-- 0.4–0.7s pause
-- entry 3 around `+6.3s` to `+8.8s`
-- about 1s final breathing room
+不要每个容器机械复制同一节奏，要根据情绪改变。
 
-Vary the values to fit sentence length and emotion. Use punctuation for micro-rhythm and SRT gaps for macro-rhythm.
+## 写给 TTS 的文字
 
-## Jianying / CapCut steps
+每个字幕块应该足够短，并在语义上可以单独自然朗读。标点负责微节奏，SRT 空白负责明显停顿。
 
-1. Import the `.srt` file as subtitles.
-2. Confirm all blocks landed at expected timestamps.
-3. Select all blocks that share a voice.
-4. Choose one TTS voice and consistent speed/style.
-5. Generate text-to-speech in batch.
-6. Check that speech does not overlap the next scheduled block.
-7. If a line overruns, shorten text first.
-8. Keep the imported subtitles as final captions or restyle them globally.
-9. Place fixed 10-second visual clips underneath the same timeline.
-10. Add one continuous BGM track and duck it beneath narration.
+需要强停顿时拆成两个字幕块，不依赖同一字幕块里的换行。
 
-Before handoff verify increasing timestamps, no overlap, no 10-second boundary crossing, enough silence for breath and transitions, natural TTS length, and final entry ending no later than target duration.
+外文人名统一使用同一中文译名，必要时把发音备注写在字幕外。
+
+## 剪映 / CapCut 操作
+
+导入 `.srt`，检查位置和空白，全选字幕块，选择统一音色、语速和风格，批量生成文本朗读。若一句挤过下一条开始点，优先删字，再考虑缩短次要停顿。保留 SRT 作为最终字幕轨，把固定 10 秒视觉片段放在同一时间轴，自定义时长按目标切点裁尾，最后添加连续 BGM 并在人声区压低。
+
+## 交付前检查
+
+时间码严格递增、无重叠、无跨 10 秒边界、每个容器有呼吸空间、每句能自然读完、最后一条不超过目标时长、字幕文字全部都是要实际朗读的内容。
